@@ -45,7 +45,7 @@ classes = np.array([np.array(classer) for classer in classes])
 means = [np.mean(row) for row in classes]
 covariance = np.cov(cov_lines)
 
-testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-testing.data')]
+testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-testing-small.data')]
 testing_lines = np.array(testing_lines)
 tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]
@@ -54,8 +54,8 @@ choices = []
 
 for t,test in enumerate(tests):
     max_disc = -1
-    if t % 50000 == 0:
-        print "{}%".format(((t * 1.0)/10000))
+    if t % 5000 == 0:
+        print "{}%".format(((t * 1.0)/1000))
     max_val = -1000000
     for i in range(0,10):
         res = case_2(test, means[i],covariance,priors[i])
