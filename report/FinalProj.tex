@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\begin{document}
+
+%------------------------Title page---------------------------
+\title{Project 4 - Color Image Compression Using Unsupervised Learning (Clustering)}
+\author{Sam Neyhart\\ sneyhart@vols.utk.edu \\ECE 471 - Professor Qi}
+\date{April 23, 2017}
+\maketitle
+\newpage
+
+
+%------------------------Abstract-----------------------------
+\begin{abstract}
+This project serves as an introduction to unsupervised learning methods 
+such as k-means, winner-take-all, Kohonen maps, and means-shift. In order
+to gain a better understanding of how these algorithms work, the algorithms
+are implemented in order to cluster the colors of the image. These images
+are then compared in order to gain insight into how the various clustering
+algorithms perform.
+\end{abstract}
+\newpage
+
+
+%-----------------------Introduction---------------------------
+\section*{Introduction}
+\paragraph{}
+This project performed for ECE 471 is an exercise in unsupervised learning.
+By experimenting with various unsupervised learning methods, the colors
+of the \textit{flowers.ppm} image are clustered into various numbers of clusters.
+To form the clusters, first the k-means algorithm is used then the 
+winner-take-all algorithm. The algorithms are implimented in python
+using the Python Image Library (Pillow) package to handle image input and 
+output.
+
+\paragraph{} 
+Overall the project served its purpose and was an opportunity to learn
+much about the concepts of unsupervised learning. For this lab the 
+PIL library was very helpful as it greatly simplified the input and output
+of image data. The algorithm used for k-means was incredible time consuming.
+\newpage
+
+
+%-----------------------Technical Approach----------------------
+\section*{Technical Approach}
+\paragraph{K-means} 
+The \textit{kmeans.py} file impliments the k-means algorithm using basic
+python and the numpy library. It will perform k-means clustering on the 
+data and then subsequently output the mean values for the requested number
+of clusters. This implementation is incredible slow however so in order to
+speed the process of obtaining the various versions of the \textit{flowers.ppm}
+image required, the Project4.py file was created. 
+
+\paragraph{Project4.py}
+This project makes use of the file \textit{Project4.py} which contains 
+instructions that perform k-means clustering on the image file using 
+the PIL Image module which contains the function quantize. The quantize
+function performs kmeans and then outputs a copy of the \textit{flowers.png} 
+image consisting only of the reduced color set. The PIL image function is 
+incredible fast compared to the k-means function I implimented. After verifying
+that the two methods produce the same results for k=4, I chose to use the 
+Project4.py file in order to perform the clustering.
+
+\paragraph{Winner-take-all}
+This project makes use of the file \textit{winner.py} which contains instructions
+which implement winner-takes-all clustering. This algorithm is much faster than the
+k-means algorithm. The winner-take-all clustering algorithm is initialized with random
+cluster centers which can result in differing final values.
+
+\paragraph{Comparison Metric}
+In order to compare the methods, several comparison metrics were devised. 
+The file size of the \textit{.png} images are compared, which provides some
+insight into how the reduced color set allows for more compression. In addition
+to these to metrics it seems that simple visual comparison is one of the most
+powerful ways to understand the differences in the images.
+
+
+%---------------------Experiments and Results-------------------------
+\newpage
+\section*{Experiments and Results}
+%\subsection*{flowers.ppm} 
+\newline
+\centerline{\includegraphics[width = 4.5in]{../flowers}}
+The original image \textit{flowers.ppm} is displayed above. All experiments
+are performed on this image. The first expiriment is the kmeans clustering
+of colors in \textit{flowers.png}. The resulting images can be seen on the following page. To generate these images k-means clustering was performed with [1, 2, 4, 8, 16
+, 32, 64, 128, 256] clusters respectively.
+
+\newpage
+\centerline{
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_1}
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_2}
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_4}}
+\centerline{
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_8}
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_16}
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_32}}
+\centerline{
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_64}
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_128}
+\includegraphics[width = 2in]{../kmeans/flowers_kmeans_256}}
+The k-means images are seen above. The visual differences on these images are 
+easy to see for the first couple images but by k=16 it becomes harder to find 
+difference between the original image and the processed image. A list of the 
+colors included in the each of these images is found in the apendix.
+\newpage
+
+
+%-----------------------------Discussion------------------------
+\section*{Discussion}
+\paragraph{}
+This lab was very interesting to perform. Using python was a good
+choice because it greatly simplified the k-means part of the lab.
+The lab certainly increased my understanding of clustering algorithms 
+and gave me greater insight to how and why they are used. The whole
+concept of unsupervised learning is very interesting and it was fascinating
+to see it in action here.
+\newpage
+
+
+%-----------------------------Reference------------------------
+\section*{Discussion}
+\paragraph{}
+This lab was very interesting to perform. Using python was a good
+choice because it greatly simplified the k-means part of the lab.
+The lab certainly increased my understanding of clustering algorithms 
+and gave me greater insight to how and why they are used. The whole
+concept of unsupervised learning is very interesting and it was fascinating
+to see it in action here.
+\newpage
+
+
+%----------------------------Appendix-----------------------------
+\appendix
+\section*{Appendix}
+\subsection*{Project4.py}
+\lstinputlisting[language=Python,numbers=left]{../Project4.py}
+\newpage
+\subsection*{kmeans.py}
+\lstinputlisting[language=Python,numbers=left]{../kmeans.py}
+\newpage
+\subsection*{winner.py}
+\lstinputlisting[language=Python,numbers=left]{../winner.py}
+\newpage
+\subsection*{kmeans-colors.txt}
+\verbatiminput{../kmeans/colors.txt}
+\newpage
+\subsection*{wta-colors.txt}
+\verbatiminput{../wta/colors.txt}
+\end{document}
