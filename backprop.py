@@ -60,7 +60,7 @@ class BPNN:
         return retval
 
 #code to test and train using the class above
-nn = BPNN([10,2,2,1])
+nn = BPNN([10,20,20,1])
 
 lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-training-true.data')]
 lines = np.array(lines)
@@ -73,6 +73,10 @@ tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]
 
 nn.train(training, res)
+corrects = 0.0
+total = 0.0
 for t,inpu in enumerate(tests):
-    print "Testing on {} result - {} actual - {}\n".format(inpu, int(round(nn.test(inpu)[0])), actual_classes[t])
-
+    total = total + 1
+    if int(round(nn.test(inpu)[0])) == actual_classes[t]:
+        corrects = corrects + 1
+print "Accuracy - {}".format(corrects/total)
