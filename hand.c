@@ -1,9 +1,56 @@
+/*
+ * kmeans.c
+ * Sam Neyhart
+ * This contains the hand struct and some related functions
+ * used in the final project of ECE 471.
+ */
+
 #include"hand.h"
 #include<math.h>
+#include<stdio.h>
 
 static const double EPSILON = 0.01;
 
-void update_mu(hand *h1, hand *mu, int nc){
+void avg(hand *avgc, hand *data, int *c, int nl, int nc)
+{
+	int count[nc];
+	for(int i=0; i<nc; i++)
+		count[i]=0;
+	for(int i=0; i<nc; i++){
+		for(int j=0; j<10; j++){
+			avgc[i].cards[j] = 0;
+		}
+	}
+	for(int i=0; i<nl; i++){
+		count[c[i]]++;
+		for(int j=0; j<10; j++){
+			avgc[c[i]].cards[j]+= data[i].cards[j];
+		}
+	}
+	for(int i=0; i<nc; i++){
+		for(int j=0; j<10; j++){
+			avgc[i].cards[j]/=count[i];
+		}
+	}
+}
+
+double accuracy(int NLINES, int nclu, int nc, int *clus, int *clas, hand *avgclus, hand *avgclas)
+{
+	int truec[nclu];
+	int count = 0;
+	printf("\n");
+	for(int i=0; i<nclu; i++){
+		truec[i] = closest(&avgclus[i], avgclas, nc);
+		printf("Cluster %d is class %d\n",i,truec[i]);
+	}
+	for(int i=0; i<NLINES; i++){
+		count+=(truec[clus[i]]==clas[i]);
+	}
+	return count/(float)NLINES;
+}
+
+void update_mu(hand *h1, hand *mu, int nc)
+{
 	int close = closest(h1, mu, nc);
 	hand tmp = vdiff(h1, &mu[close]);
 	tmp = scale(&tmp, EPSILON);
@@ -11,7 +58,8 @@ void update_mu(hand *h1, hand *mu, int nc){
 		mu[close].cards[i] += tmp.cards[i];
 }
 
-hand vdiff(hand *h1, hand *h2){
+hand vdiff(hand *h1, hand *h2)
+{
 	hand out = *h1;
 	for(int i = 0; i < sizeof(out.cards)/sizeof(out.cards[0]); i++)
 		out.cards[i] = h1->cards[i] - h2->cards[i];
@@ -47,4 +95,11 @@ int closest(hand *h1, hand *mu, int NCLUSTERS)
 		}
 	}
 	return closest;
+}
+
+void cluster(hand *data, hand *mu, int nl, int nc, int *clus)
+{
+	for(int i=0; i<nl; i++){
+		clus[i] = closest(&data[i],mu,nc);
+	}
 }

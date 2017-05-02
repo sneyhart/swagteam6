@@ -12,12 +12,12 @@ knn_res = []
 corrects = [0] * 20
 #file IO
 
-lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-training-true.data')]
+lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_training.data')]
 lines = np.array(lines)
 training = np.delete(lines.T, lines.T.shape[0] - 1,0).T
 res = lines.T[-1]
 
-testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-testing-smaller.data')]
+testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_testing.data')]
 testing_lines = np.array(testing_lines)
 tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]
@@ -41,7 +41,7 @@ for u,unit in enumerate(tests):
     for k in range(1,20):
         mmax = -1
         mindex = -1
-        counts[results[k-1]] = counts[results[k-1]] + 1
+        counts[int(results[k-1])] = counts[int(results[k-1])] + 1
  
         for ind,count in enumerate(counts):
             if mmax < count:
