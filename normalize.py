@@ -1,3 +1,8 @@
+# Normalizaiton
+# Input/Output file names defined in main funciton
+# Running simply normalizes data and writes to output file
+# Handy data separation techniques used
+
 import math
 import numpy as np
 from numpy import linalg as LA
