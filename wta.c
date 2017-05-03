@@ -72,6 +72,9 @@ int main(int argc, char ** argv)
 	hand *avgclus = calloc(NCLUSTERS,sizeof(hand));
 	avg(avgclas, data, clas, NLINES, NCLASSES);
 	avg(avgclus, data, clus, NLINES, NCLUSTERS);
+	printf(
+			"----------------------------For Number of clusters %d"
+			"----------------------------\n",NCLUSTERS);	
 	printf("Avg Clusters:\n");
 	for(int i = 0; i < NCLUSTERS; i++){
 		for(int j = 0; j < NCARDS; j++){
@@ -89,6 +92,7 @@ int main(int argc, char ** argv)
 	double acc;
 	acc = accuracy(NLINES,NCLUSTERS,NCLASSES,clus,clas,avgclus,avgclas);
 	printf("\nOverall Accuracy is %lf\n\n",acc);	
+
 	//---------Cleanup----------
 	free(data);
 	free(mu);

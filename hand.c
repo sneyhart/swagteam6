@@ -11,6 +11,16 @@
 
 static const double EPSILON = 0.01;
 
+int clus_equal(int *c1, int *c2,int NLINES)
+{
+	for(int i=0; i<NLINES;i++){
+		if(c1[i]!=c2[i]){
+			return 0;
+		}
+	}
+	return 1;
+}
+
 void avg(hand *avgc, hand *data, int *c, int nl, int nc)
 {
 	int count[nc];
@@ -30,6 +40,8 @@ void avg(hand *avgc, hand *data, int *c, int nl, int nc)
 	for(int i=0; i<nc; i++){
 		for(int j=0; j<10; j++){
 			avgc[i].cards[j]/=count[i];
+			if (count[i]==0)
+				avgc[i].cards[j]=-1;
 		}
 	}
 }

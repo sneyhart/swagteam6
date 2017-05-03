@@ -19,4 +19,5 @@ int closest(hand *h1, hand *mu, int nc);
 void cluster(hand *data, hand *mu, int nl, int nc, int *cluster);
 void avg(hand *avgc, hand *data, int *c, int nl, int nc);
 double accuracy(int NLINES, int nclu, int nc, int *clus, int *clas, hand *avgclus, hand *avgclas);
+int clus_equal(int *c1, int *c2,int NLINES);
 #endif
