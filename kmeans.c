@@ -1,7 +1,7 @@
 /*
  * kmeans.c
  * Sam Neyhart
- * This file contains the wta program used in the final project of 
+ * This file contains the kmeans program used in the final project of 
  * ECE 471.
  * USAGE: kmeans filename.data nclusters
  */

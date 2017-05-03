@@ -1,5 +1,5 @@
 /*
- * kmeans.c
+ * hand.c
  * Sam Neyhart
  * This contains the hand struct and some related functions
  * used in the final project of ECE 471.
@@ -10,6 +10,7 @@
 #include<stdio.h>
 
 static const double EPSILON = 0.01;
+static const double EPSILON_MAX = 0.05;
 
 int clus_equal(int *c1, int *c2,int NLINES)
 {
@@ -59,6 +60,21 @@ double accuracy(int NLINES, int nclu, int nc, int *clus, int *clas, hand *avgclu
 		count+=(truec[clus[i]]==clas[i]);
 	}
 	return count/(float)NLINES;
+}
+
+void kohonen_mu(hand *h1, hand *mu, int NCLUSTERS, int k, int kmax)
+{	
+	int close = closest(h1, mu, NCLUSTERS);
+	hand win = mu[close];
+	for(int i=0; i<NCLUSTERS; i++){
+		hand tmp = vdiff(h1,&mu[i]);
+		double e = EPSILON_MAX * pow(EPSILON/EPSILON_MAX,k/(double)kmax);
+		double d = exp(-1*dist(&win,&mu[i]));
+		tmp = scale(&tmp,e*d);
+		for(int j=0; j < sizeof(tmp.cards)/sizeof(tmp.cards[0]); j++){
+			mu[i].cards[j]+=tmp.cards[j];
+		}
+	}
 }
 
 void update_mu(hand *h1, hand *mu, int nc)

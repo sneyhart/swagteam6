@@ -1,8 +1,9 @@
 /*
- * kmeans.c
+ * hand.h
  * Sam Neyhart
- * This contains the kmeans program used in the final project of 
- * ECE 471.
+ * This contains the definition of the hand struct
+ * and the declarations of the relevant functions
+ * used in the final project of ECE 471.
  */
 
 #ifndef _hand
@@ -15,6 +16,7 @@ hand scale(hand *h1, double s);
 double dist(hand *h1, hand *h2);
 hand vdiff(hand *h1, hand *h2);
 void update_mu(hand *h1, hand *mu, int nc);
+void kohonen_mu(hand *h1,hand *mu, int NCLUSTERS,int k,int kmax);
 int closest(hand *h1, hand *mu, int nc);
 void cluster(hand *data, hand *mu, int nl, int nc, int *cluster);
 void avg(hand *avgc, hand *data, int *c, int nl, int nc);

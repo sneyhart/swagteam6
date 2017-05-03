@@ -1,9 +1,9 @@
 /*
- * wta.c
+ * kohonen.c
  * Sam Neyhart
- * This file contains the wta program used in the final project of 
+ * This file contains the kohonen program used in the final project of 
  * ECE 471.
- * USAGE: wta filename.data nclusters
+ * USAGE: kohonen filename.data nclusters
  */
 
 #include<string.h>
@@ -14,7 +14,7 @@
 #include"hand.h"
 
 
-static const int ITERATIONS = 20; //How many times to go through data
+static const int ITERATIONS = 6000000; //How many times to go through data
 static const int NCLASSES = 10;
 static const int NCARDS = 10;
 static int NCLUSTERS;
@@ -58,11 +58,9 @@ int main(int argc, char ** argv)
 		}
 	}
 	
-	//---------Perform WTA----------
+	//---------Perform Kohonen----------
 	for(int i = 0; i < ITERATIONS; i++){
-		for(int j=0; j<NLINES;j++){
-			update_mu(&data[j],mu,NCLUSTERS);
-		}
+		kohonen_mu(&data[i%NLINES],mu,NCLUSTERS,i,ITERATIONS);
 	}
 	
 	//-----Deterimine Accuracy-----
