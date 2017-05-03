@@ -65,6 +65,7 @@ int main(int argc, char ** argv)
 	int done = 0;
 	int it = 0;
 	while (done==0){
+		//printf("iteration %d\n",it);
 		if (flip==0){
 			cluster(data,mu,NLINES,NCLUSTERS,clus1);
 			avg(mu, data, clus1,NLINES,NCLUSTERS);
