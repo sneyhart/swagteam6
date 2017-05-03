@@ -27,7 +27,7 @@ priors = [0.501177,0.422569,0.047539,0.021128,0.003925,0.001965,0.001441,0.00024
 classes = [[] for i in range(0,10)]
 
 # Handle file manipulation
-lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_norm_training.data')]
+lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('poker-hand-training-true-normalized.data')]
 lines = np.array(lines)
 
 #handle getting covariance matrix and means
@@ -38,7 +38,7 @@ classes = np.array([np.array(classer) for classer in classes])
 means = [np.mean(row) for row in classes]
 covariance = np.cov(cov_lines)
 
-testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_norm_testing.data')]
+testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('poker-hand-testing-smaller-normalized.data')]
 testing_lines = np.array(testing_lines)
 tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]
@@ -61,4 +61,6 @@ for i in range(0, len(choices)):
     if choices[i] == int(actual_classes[i]):
         corrects = corrects + 1
     total = total + 1
-print "Case 3 - {}".format((corrects * 1.0)/total)
+fusout = open("fusion-files-majority/mpp.data",'w')
+for choice in choices:
+    fusout.write("{}\n".format(int(choice)))

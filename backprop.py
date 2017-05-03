@@ -60,14 +60,14 @@ class BPNN:
         return retval
 
 #code to test and train using the class above
-nn = BPNN([3,15,15,1])
+nn = BPNN([10,15,15,1])
 
-lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_norm_training.data')]
+lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('poker-hand-training-true-normalized.data')]
 lines = np.array(lines)
 training = np.delete(lines.T, lines.T.shape[0] - 1,0).T
 res = lines.T[-1]
 
-testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_norm_testing.data')]
+testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('poker-hand-testing-smaller-normalized.data')]
 testing_lines = np.array(testing_lines)
 tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]
@@ -75,8 +75,10 @@ actual_classes = testing_lines.T[-1]
 nn.train(training, res)
 corrects = 0.0
 total = 0.0
+fusout = open("fusion-files-majority/bpnn.data",'w')
 for t,inpu in enumerate(tests):
     total = total + 1
+    fusout.write("{}\n".format(int(round(nn.test(inpu)[0]))))
     if int(round(nn.test(inpu)[0])) == actual_classes[t]:
         corrects = corrects + 1
 print "Accuracy - {}".format(corrects/total)
