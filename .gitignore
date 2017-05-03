@@ -1,6 +1,6 @@
 test.c
 test
-wta
+#wta
 report/FinalProj.aux
 report/FinalProj.log
 .DS_Store
