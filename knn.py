@@ -12,12 +12,12 @@ knn_res = []
 corrects = [0] * 20
 #file IO
 
-lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_training.data')]
+lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_norm_training.data')]
 lines = np.array(lines)
 training = np.delete(lines.T, lines.T.shape[0] - 1,0).T
 res = lines.T[-1]
 
-testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_testing.data')]
+testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('pca_norm_testing.data')]
 testing_lines = np.array(testing_lines)
 tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]

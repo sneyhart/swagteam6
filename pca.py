@@ -1,10 +1,10 @@
 import numpy as np
-lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-training-true.data')]
+lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('poker-hand-training-true-normalized.data')]
 lines = np.array(lines)
 training = np.delete(lines.T, lines.T.shape[0] - 1,0).T
 res = lines.T[-1]
 
-testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(int) for file_line in open('poker-hand-testing-smaller.data')]
+testing_lines = [np.array((file_line.rstrip('\n').split(','))).astype(float) for file_line in open('poker-hand-testing-smaller-normalized.data')]
 testing_lines = np.array(testing_lines)
 tests = np.delete(testing_lines.T, testing_lines.T.shape[0] - 1,0).T
 actual_classes = testing_lines.T[-1]
@@ -40,8 +40,8 @@ tp.append(res)
 tp = np.array(tp)
 minTrain = tp.T
 
-testOut = open('pca_testing.data','w')
-trainOut = open('pca_training.data','w')
+testOut = open('pca_norm_testing.data','w')
+trainOut = open('pca_norm_training.data','w')
 
 for line in minTest:
     for i,piece in enumerate(line):
