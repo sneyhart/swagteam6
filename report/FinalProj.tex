@@ -167,8 +167,10 @@ N: 25,010 training, 1,000,000 testing
 \paragraph{MPP} 
 The mpp.py Python script implements the MPP algorithm using basic Python, the numpy library,
 and the matplotlib library.  It performs MPP parametric-based classification by first
-calculating the mean and covariance matricies from the dataset.
-*Bayes/Discriminant Func*
+calculating the mean and covariance matricies from the dataset. Then using one of the three different cases of discriminant functions
+which can be altered in the code, the machine compares the results of all of the classes then decides the class with the
+highest result.
+
 \paragraph{Case 1}
 The features are statistically independent, and have the same variance.  
 Geometrically, the samples fall in equal-size hyperspherical clusters.  
