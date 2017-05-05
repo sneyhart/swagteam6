@@ -55,8 +55,6 @@ classification methods were re-written by team members for this project.
 \newpage
 
 
-
-
 %-----------------------Introduction---------------------------
 \section*{Introduction}
 \paragraph{}
@@ -74,6 +72,72 @@ much about the concepts of unsupervised learning. For this lab the
 PIL library was very helpful as it greatly simplified the input and output
 of image data. The algorithm used for k-means was incredible time consuming.
 \newpage
+
+
+%-----------------------Technical Approach----------------------
+\section*{Technical Approach}
+\paragraph{MPP} 
+The mpp.py Python script implements the MPP algorithm using basic Python, the numpy library,
+and the matplotlib library.  It performs MPP parametric-based classification by first
+calculating the mean and covariance matricies from the dataset.
+\paragraph{Case 1}
+The features are statistically independent, and have the same variance.  
+Geometrically, the samples fall in equal-size hyperspherical clusters.  
+Decision boundary: hyperplane of d-1 dimension.  This classification technique employs the
+linear discriminant function and linear machine.  Additionally, when prior probabilities are
+the same, the discriminant function is actually measuring the minimum distance from each
+feature to each of the c mean vectors.
+\paragraph{Case 2}
+The covariance matrices for all the classes are identical but not a scalar of identity matrix.
+Geometrically, the samples fall in hyperellipsoidal clusters.  
+Decision boundary: hyperplane of d-1 dimension.
+\paragraph{Case 3}
+No assumption: the covariance matrices are different for each class.  
+Quadratic classifier.  
+Decision boundary: hyperquadratic for 2-D Gaussian.
+
+\paragraph{kNN} 
+The knn.py Python script implements the kNN algorithm usign basic Python, the numpy library,
+and the scipy library.  It performs kNN classification, or majority voting, using Euclidean
+distance to assign a random sample according to the majority representation of classes
+within the enclosing hypersphere of k nearest neighbors
+
+\paragraph{BPNN} 
+\paragraph{Decision Tree} 
+\paragraph{K-Means} 
+\paragraph{Winner-Take-All} 
+
+\paragraph{K-means} 
+The \textit{kmeans.py} file impliments the k-means algorithm using basic
+python and the numpy library. It will perform k-means clustering on the 
+data and then subsequently output the mean values for the requested number
+of clusters. This implementation is incredible slow however so in order to
+speed the process of obtaining the various versions of the \textit{flowers.ppm}
+image required, the Project4.py file was created. 
+
+\paragraph{Project4.py}
+This project makes use of the file \textit{Project4.py} which contains 
+instructions that perform k-means clustering on the image file using 
+the PIL Image module which contains the function quantize. The quantize
+function performs kmeans and then outputs a copy of the \textit{flowers.png} 
+image consisting only of the reduced color set. The PIL image function is 
+incredible fast compared to the k-means function I implimented. After verifying
+that the two methods produce the same results for k=4, I chose to use the 
+Project4.py file in order to perform the clustering.
+
+\paragraph{Winner-take-all}
+This project makes use of the file \textit{winner.py} which contains instructions
+which implement winner-takes-all clustering. This algorithm is much faster than the
+k-means algorithm. The winner-take-all clustering algorithm is initialized with random
+cluster centers which can result in differing final values.
+
+\paragraph{Comparison Metric}
+In order to compare the methods, several comparison metrics were devised. 
+The file size of the \textit{.png} images are compared, which provides some
+insight into how the reduced color set allows for more compression. In addition
+to these to metrics it seems that simple visual comparison is one of the most
+powerful ways to understand the differences in the images.
+
 
 
 %-----------------------Technical Approach----------------------
