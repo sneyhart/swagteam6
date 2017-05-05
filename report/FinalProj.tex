@@ -55,8 +55,20 @@ https://github.com/sneyhart/swagteam6
 %-----------------------Team Member Contributions---------------------------
 \section*{Team Member Contributions}
 \subsection*{Clark}
+\newline
+\indent Mpp
+\newline
+\indent Knn
+\newline
+\indent BPNN
+\newline
+\indent Decision Tree
+\newline
+\indent Report Writing
+\newline
 \subsection*{Sam}
 \subsection*{Kevin}
+\newline
 \indent Normalization
 \newline
 \indent Evaluation
@@ -185,12 +197,13 @@ The backprop.py script implements the backpropogation algorithm using basic Pyth
 library, and the random library.  Backpropogation is a type of multilayer feedforward network
 that calculates the difference between unit output and expected output, "back-propogating"
 this delta from the output layers back toward the feeding layers.  This technique causes the
-network to "learn" correct classifictions in a supervised architecture.
-*num layers*
+network to "learn" correct classifictions in a supervised architecture. The script uses a network with 2 hidden layes. Each hidden layer has 15 neurons in each layer. The input layers change based on if the PCA preprocessing has been done on the input data. The output for the network is one neuron for the classification.
 
 \paragraph{Decision Tree} 
 The dtree.py script implements the decision tree architecture using basic Python and the numpy
-library.  Lec20 - slides 7, 8, 9, 11, 12, 13
+library.  The decision tree is structured to decide the various classes in an increasing faction. The highest valued
+class that is decided is the resulting classification of that hand. This is very efficient because the features of the
+data set are such that each class is made up of a specific set of cards. Thus each node will test the hand and classify it into that hand.
 
 \paragraph{K-means} 
 The \textit{kmeans.py} file impliments the k-means algorithm using basic
@@ -286,24 +299,12 @@ generally lower accuracy due to near complete mitigation of training/testing cyc
 %-----------------------------Discussion------------------------
 \section*{Discussion}
 \paragraph{}
-This lab was very interesting to perform. Using python was a good
-choice because it greatly simplified the k-means part of the lab.
-The lab certainly increased my understanding of clustering algorithms 
-and gave me greater insight to how and why they are used. The whole
-concept of unsupervised learning is very interesting and it was fascinating
-to see it in action here.
-\newpage
-
-
-%-----------------------------Reference------------------------
-\section*{Discussion}
-\paragraph{}
-This lab was very interesting to perform. Using python was a good
-choice because it greatly simplified the k-means part of the lab.
-The lab certainly increased my understanding of clustering algorithms 
-and gave me greater insight to how and why they are used. The whole
-concept of unsupervised learning is very interesting and it was fascinating
-to see it in action here.
+This project was very interesting to perform. Employing all of the classifiers that the course has covered
+proved to be a difficult yet enjoyable exercise. Using python was a good choice for most of the programs 
+because of the simplicity of programming in Python as well as the ever useful libraries provided in the language.
+The clustering programs were written in c because of the size of the data set. C performed much faster than Python would have
+thus the group was able to run more tesst to glean a reasonable understanding of how well the programs performed. This was a very
+rewarding project to work on for the team. 
 \newpage
 
 
