@@ -80,6 +80,7 @@ of image data. The algorithm used for k-means was incredible time consuming.
 The mpp.py Python script implements the MPP algorithm using basic Python, the numpy library,
 and the matplotlib library.  It performs MPP parametric-based classification by first
 calculating the mean and covariance matricies from the dataset.
+*Bayes/Discriminant Func*
 \paragraph{Case 1}
 The features are statistically independent, and have the same variance.  
 Geometrically, the samples fall in equal-size hyperspherical clusters.  
@@ -100,7 +101,8 @@ Decision boundary: hyperquadratic for 2-D Gaussian.
 The knn.py Python script implements the kNN algorithm usign basic Python, the numpy library,
 and the scipy library.  It performs kNN classification, or majority voting, using Euclidean
 distance to assign a random sample according to the majority representation of classes
-within the enclosing hypersphere of k nearest neighbors.
+within the enclosing hypersphere of k nearest neighbors.  We experiment with different k's
+and evaluate performance.
 
 \paragraph{BPNN} 
 The backprop.py script implements the backpropogation algorithm using basic Python, the numpy
@@ -111,7 +113,8 @@ network to "learn" correct classifictions in a supervised architecture.
 *num layers*
 
 \paragraph{Decision Tree} 
-SOMETHING
+The dtree.py script implements the decision tree architecture using basic Python and the numpy
+library.  Lec20 - slides 7, 8, 9, 11, 12, 13
 
 \paragraph{K-means} 
 The \textit{kmeans.py} file impliments the k-means algorithm using basic
@@ -129,23 +132,6 @@ cluster centers which can result in differing final values.
 
 \paragraph{Kohonen Maps}
 SOMETHING
-
-\paragraph{Project4.py}
-This project makes use of the file \textit{Project4.py} which contains 
-instructions that perform k-means clustering on the image file using 
-the PIL Image module which contains the function quantize. The quantize
-function performs kmeans and then outputs a copy of the \textit{flowers.png} 
-image consisting only of the reduced color set. The PIL image function is 
-incredible fast compared to the k-means function I implimented. After verifying
-that the two methods produce the same results for k=4, I chose to use the 
-Project4.py file in order to perform the clustering.
-
-\paragraph{Comparison Metric}
-In order to compare the methods, several comparison metrics were devised. 
-The file size of the \textit{.png} images are compared, which provides some
-insight into how the reduced color set allows for more compression. In addition
-to these to metrics it seems that simple visual comparison is one of the most
-powerful ways to understand the differences in the images.
 
 
 %---------------------Experiments and Results-------------------------
