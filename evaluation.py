@@ -328,10 +328,10 @@ def main():
 
 
 
-#main()
+main()
 #test_weave()
 #test_getMSets()
-test_mFoldValid()
+#test_mFoldValid()
 
 
 

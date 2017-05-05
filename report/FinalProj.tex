@@ -45,6 +45,8 @@ classification methods were re-written by team members for this project.
 Overall the project served its purpose and was an opportunity to learn
 much about the concepts of this course. For this lab the 
 numpy library was very helpful.
+\paragraph{} 
+We used a github repository to collaborate on this project: https://github.com/sneyhart/swagteam6
 \newpage
 
 
@@ -125,6 +127,9 @@ Class Information:
       8: Straight flush; straight + flush
 \newline
       9: Royal flush; {Ace, King, Queen, Jack, Ten} + flush
+\newline
+\newline
+N: 25,010 training, 1,000,000 testing
 \newpage
 
 
@@ -244,13 +249,21 @@ colors included in the each of these images is found in the apendix.
 %-----------------------------Evaluation------------------------
 \section*{Evaluation}
 \paragraph{}
-Evaluation was performed using 10-fold cross-validation for the kNN classifier.
+Evalution was performed using 10-fold cross-validation for the kNN classifier.
 Evaluation is performed in evaluation.py using standard Python language, with the support of
 the math, random, numpy, and subprocess libraries.  This script performes the m-fold
 cross-validation algorithm by dividing the dataset into m disjoint sets and iterates over them
 using the 'leave-one-out' methodology, where one set is preserved as the testing (or validaiton)
 set and the remaining m-1 sets are combined to become the new training set.  Normalization is
 performed anew on each of the m iterations for the training and testing sets separately.
+\newline
+\newline
+\centerline{\includegraphics[width = 4.5in]{images/KNN_MFOLD2.png}}
+\newline
+\newline
+kNN with 10-fold validation has a similar profile to the previous kNN trials performed with
+generally lower accuracy due to near complete mitigation of training/testing cycle bias.
+\newpage
 
 
 %-----------------------------Discussion------------------------
@@ -280,18 +293,32 @@ to see it in action here.
 %----------------------------Appendix-----------------------------
 \appendix
 \section*{Appendix}
-\subsection*{Project4.py}
-\lstinputlisting[language=Python,numbers=left]{../Project4.py}
+\subsection*{normalize.py}
+\lstinputlisting[language=Python,numbers=left]{../normalize.py}
 \newpage
-\subsection*{kmeans.py}
-\lstinputlisting[language=Python,numbers=left]{../kmeans.py}
+\subsection*{mpp.py}
+\lstinputlisting[language=Python,numbers=left]{../mpp.py}
 \newpage
-\subsection*{winner.py}
-\lstinputlisting[language=Python,numbers=left]{../winner.py}
+\subsection*{knn.py}
+\lstinputlisting[language=Python,numbers=left]{../knn.py}
 \newpage
-\subsection*{kmeans-colors.txt}
-\verbatiminput{../kmeans/colors.txt}
+\subsection*{backprop.py}
+\lstinputlisting[language=Python,numbers=left]{../backprop.py}
 \newpage
-\subsection*{wta-colors.txt}
-\verbatiminput{../wta/colors.txt}
+\subsection*{dtree.py}
+\verbatiminput{../dtree.py}
+\newpage
+\subsection*{kmeans.c}
+\verbatiminput{../kmeans.c}
+\newpage
+\subsection*{wta.c}
+\lstinputlisting[language=Python,numbers=left]{../wta.c}
+\newpage
+\subsection*{kohonen.c}
+\lstinputlisting[language=Python,numbers=left]{../kohonen.c}
+\newpage
+\subsection*{evaluation.py}
+\lstinputlisting[language=Python,numbers=left]{../evaluation.py}
+\newpage
+
 \end{document}
