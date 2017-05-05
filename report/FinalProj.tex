@@ -41,10 +41,11 @@ with the classification methods learned during this course.  We are proud to ann
 did not use any supporting libraries that do heavy-lifting of core computations, i.e. all
 classification methods were re-written by team members for this project.
 
-\paragraph{} 
-Overall the project served its purpose and was an opportunity to learn
-much about the concepts of this course. For this lab the 
-numpy library was very helpful.
+%\paragraph{} 
+%Overall the project served its purpose and was an opportunity to learn
+%much about the concepts of this course. For this lab the 
+%numpy library was very helpful.
+
 \paragraph{} 
 We used a github repository to collaborate on this project:
 \newline
@@ -57,25 +58,23 @@ https://github.com/sneyhart/swagteam6
 \subsection*{Clark}
 \newline
 \indent Mpp
-\newline
-\indent Knn
-\newline
-\indent BPNN
-\newline
-\indent Decision Tree
-\newline
-\indent Report Writing
+\newline Knn
+\newline BPNN
+\newline Decision Tree
+\newline Report Writing
 \newline
 \subsection*{Sam}
+\newline
+\indent Winner-take-all
+\newline Kmeans
+\newline Kohonen Map
+\newline Report writing
 \subsection*{Kevin}
 \newline
 \indent Normalization
-\newline
-\indent Evaluation
-\newline
-\indent Team organization
-\newline
-\indent Report writing
+\newline Evaluation
+\newline Team organization
+\newline Report writing
 \newpage
 
 
@@ -85,7 +84,8 @@ https://github.com/sneyhart/swagteam6
 The dataset we chose consists of all possible permutations of five-card poker hands dealt
 from a standard deck of 52 cards.  Each sample is one hand and each card is represented
 by two features (suit and rank), for a total of 10 predictive attributes plus one class
-attribute.  As previously mentioned, the order of cards is mportant, which is why there
+attribute.  As previously mentioned, the order of cards is unimportant to its classification,
+which is why there
 are 480 possible Royal Flush hands as compared to only 4 in the combination set.
 \subsection*{From poker-hand.names} 
 Attribute Information:
@@ -186,7 +186,7 @@ Quadratic classifier.
 Decision boundary: hyperquadratic for 2-D Gaussian.
 
 \paragraph{kNN} 
-The knn.py Python script implements the kNN algorithm usign basic Python, the numpy library,
+The knn.py Python script implements the kNN algorithm using basic Python, the numpy library,
 and the scipy library.  It performs kNN classification, or majority voting, using Euclidean
 distance to assign a random sample according to the majority representation of classes
 within the enclosing hypersphere of k nearest neighbors.  We experiment with different k's
@@ -197,7 +197,7 @@ The backprop.py script implements the backpropogation algorithm using basic Pyth
 library, and the random library.  Backpropogation is a type of multilayer feedforward network
 that calculates the difference between unit output and expected output, "back-propogating"
 this delta from the output layers back toward the feeding layers.  This technique causes the
-network to "learn" correct classifictions in a supervised architecture. The script uses a network with 2 hidden layes. Each hidden layer has 15 neurons in each layer. The input layers change based on if the PCA preprocessing has been done on the input data. The output for the network is one neuron for the classification.
+network to "learn" correct classifictions in a supervised architecture. The script uses a network with 2 hidden layes. Each hidden layer has 15 neurons. The input layers change based on if the PCA preprocessing has been done on the input data. The output for the network is one neuron for the classification.
 
 \paragraph{Decision Tree} 
 The dtree.py script implements the decision tree architecture using basic Python and the numpy
@@ -205,74 +205,56 @@ library.  The decision tree is structured to decide the various classes in an in
 class that is decided is the resulting classification of that hand. This is very efficient because the features of the
 data set are such that each class is made up of a specific set of cards. Thus each node will test the hand and classify it into that hand.
 
-\paragraph{K-means} 
-The \textit{kmeans.py} file impliments the k-means algorithm using basic
-python and the numpy library. It will perform k-means clustering on the 
-data and then subsequently output the mean values for the requested number
-of clusters. This implementation is incredibly slow however so in order to
-speed the process of obtaining the various versions of the \textit{flowers.ppm}
-image required, the Project4.py file was created. 
+\paragraph{Kmeans} 
+The \textit{kmeans} program was written for this project in C because we believed
+that python would not be able to perform the kmeans algorithm within an acceptable 
+time span. The files \textit{hand.c} and \textit{hand.h} contain the definition of
+a hand struct as well some useful functions relating to this struct. Our kmeans 
+program makes use of these two file in order to perform kmeans clustering on our data
+set. Despite having been written in C, the algorithm can take several minutes large data 
+sets. Because of the the nature of poker hands, clustering on the raw data does not 
+perform particularily well.
 
 \paragraph{Winner-Take-All}
-This project makes use of the file \textit{winner.py} which contains instructions
-which implement winner-takes-all clustering. This algorithm is much faster than the
-k-means algorithm. The winner-take-all clustering algorithm is initialized with random
-cluster centers which can result in differing final values.
+In order to perform winner-take-all clustering on our data set the program \textit{wta} was
+written in C. The general structure of this program is the same as that of the kmeans program.
+The file input and output sections of code are reused and \textit{wta} also makes use of
+the hand.c and hand.h files. The main way in which our winner-take-all program differs from
+our kmeans program is in the loop where the actual algorith is performed. This program is 
+very fast (less than 5 seconds) even for our largest data set (1,000,000 data points). 
 
 \paragraph{Kohonen Maps}
-SOMETHING
+In order to the perform the kohonen map algorithm on our data set the program \textit{kohonen} was
+written in C. The general structure of this program is the same as that of the kmeans and
+winner-take-all programs. The file input and output sections of code are reused and 
+\textit{kohonen} also makes use of of the hand.c and hand.h files. Once again all major
+changes were made in the main loop where the algorithm is performed. The speed of this program
+is comporable to \textit{wta}.
 
 
 %---------------------Experiments and Results-------------------------
 \newpage
 \section*{Experiments and Results}
 \paragraph{MPP}
-
 \centerline{\includegraphics[width = 4.5in]{images/mpp-results}}
 
 \paragraph{kNN}
-
 \centerline{\includegraphics[width = 4.5in]{images/knn-results}}
 
 \paragraph{BPNN}
-
 \centerline{\includegraphics[width = 4.5in]{images/bpnn-results}}
 
 \paragraph{Decision Tree}
 The Decision tree algorithm was actually able to classify with an accuracy of one hundred percent when run on the testing set. The algorithm simply ran through each of the hands and had a node that decided for each of the groups since each group is defined in such a way that is known before hand and has to be a certain combination of the cards. This lead the algorithm to be very fast as well since it only goes through the data set one time to classify each hand.
 
-
-
 \paragraph{K-means}
-
-\centerline{\includegraphics[width = 4.5in]{../flowers}}
+\centerline{\includegraphics[width = 4.5in]{images/KmeansAccuracyRaw}}
 
 \paragraph{Winner-Take-All}
+\centerline{\includegraphics[width = 4.5in]{images/WtaAccuracyRaw}}
+
 \paragraph{Kohonen Maps}
-
-\centerline{\includegraphics[width = 4.5in]{../flowers}}
-The original image \textit{flowers.ppm} is displayed above. All experiments
-are performed on this image. The first expiriment is the kmeans clustering
-of colors in \textit{flowers.png}. The resulting images can be seen on the following page. To generate these images k-means clustering was performed with [1, 2, 4, 8, 16
-, 32, 64, 128, 256] clusters respectively.
-
-\newpage
-\centerline{
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_1}
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_2}
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_4}}
-\centerline{
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_8}
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_16}
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_32}}
-\centerline{
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_64}
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_128}
-\includegraphics[width = 2in]{../kmeans/flowers_kmeans_256}}
-The k-means images are seen above. The visual differences on these images are 
-easy to see for the first couple images but by k=16 it becomes harder to find 
-difference between the original image and the processed image. A list of the 
-colors included in the each of these images is found in the apendix.
+\centerline{\includegraphics[width = 4.5in]{images/KohonenAccuracyRaw}}
 \newpage
 
 
@@ -327,13 +309,19 @@ rewarding project to work on for the team.
 \verbatiminput{../dtree.py}
 \newpage
 \subsection*{kmeans.c}
-\verbatiminput{../kmeans.c}
+\lstinputlisting[language=C,numbers=left]{../kmeans.c}
 \newpage
 \subsection*{wta.c}
-\lstinputlisting[language=Python,numbers=left]{../wta.c}
+\lstinputlisting[language=C,numbers=left]{../wta.c}
 \newpage
 \subsection*{kohonen.c}
-\lstinputlisting[language=Python,numbers=left]{../kohonen.c}
+\lstinputlisting[language=C,numbers=left]{../kohonen.c}
+\newpage
+\subsection*{hand.c}
+\lstinputlisting[language=C,numbers=left]{../hand.c}
+\newpage
+\subsection*{hand.h}
+\lstinputlisting[language=C,numbers=left]{../hand.h}
 \newpage
 \subsection*{evaluation.py}
 \lstinputlisting[language=Python,numbers=left]{../evaluation.py}
