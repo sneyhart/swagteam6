@@ -48,6 +48,86 @@ numpy library was very helpful.
 \newpage
 
 
+%-----------------------Dataset----------------------
+\section*{Dataset}
+\paragraph{}
+The dataset we chose consists of all possible permutations of five-card poker hands dealt
+from a standard deck of 52 cards.  Each sample is one hand and each card is represented
+by two features (suit and rank), for a total of 10 predictive attributes plus one class
+attribute.  As previously mentioned, the order of cards is mportant, which is why there
+are 480 possible Royal Flush hands as compared to only 4 in the combination set.
+\subsection*{From poker-hand.names} 
+Attribute Information:
+\newline
+   1) S1 ìSuit of card 1
+\newline
+\indent Ordinal (1-4) representing {Hearts, Spades, Diamonds, Clubs}
+\newline
+   2) C1 ìRank of card 1
+\newline
+\indent Numerical (1-13) representing (Ace, 2, 3, ... , Queen, King)
+\newline
+   3) S2 ìSuit of card 2
+\newline
+\indent Ordinal (1-4) representing {Hearts, Spades, Diamonds, Clubs}
+\newline
+   4) C2 ìRank of card 2
+\newline
+\indent Numerical (1-13) representing (Ace, 2, 3, ... , Queen, King)
+\newline
+   5) S3 ìSuit of card #3
+\newline
+\indent Ordinal (1-4) representing {Hearts, Spades, Diamonds, Clubs}
+\newline
+   6) C3 ìRank of card #3
+\newline
+\indent Numerical (1-13) representing (Ace, 2, 3, ... , Queen, King)
+\newline
+   7) S4 ìSuit of card #4
+\newline
+\indent Ordinal (1-4) representing {Hearts, Spades, Diamonds, Clubs}
+\newline
+   8) C4 ìRank of card #4
+\newline
+\indent Numerical (1-13) representing (Ace, 2, 3, ... , Queen, King)
+\newline
+   9) S5 ìSuit of card #5
+\newline
+\indent Ordinal (1-4) representing {Hearts, Spades, Diamonds, Clubs}
+\newline
+   10) C5 ìRank of card #5
+\newline
+\indent Numerical (1-13) representing (Ace, 2, 3, ... , Queen, King)
+\newline
+   11) CLASS ìPoker Handî
+\newline
+\indent Ordinal (0-9)
+\newline
+\newline
+Class Information:
+\newline
+      0: Nothing in hand; not a recognized poker hand 
+\newline
+      1: One pair; one pair of equal ranks within five cards
+\newline
+      2: Two pairs; two pairs of equal ranks within five cards
+\newline
+      3: Three of a kind; three equal ranks within five cards
+\newline
+      4: Straight; five cards, sequentially ranked with no gaps
+\newline
+      5: Flush; five cards with the same suit
+\newline
+      6: Full house; pair + different rank three of a kind
+\newline
+      7: Four of a kind; four equal ranks within five cards
+\newline
+      8: Straight flush; straight + flush
+\newline
+      9: Royal flush; {Ace, King, Queen, Jack, Ten} + flush
+\newpage
+
+
 %-----------------------Technical Approach----------------------
 \section*{Technical Approach}
 \paragraph{MPP} 
@@ -159,6 +239,18 @@ easy to see for the first couple images but by k=16 it becomes harder to find
 difference between the original image and the processed image. A list of the 
 colors included in the each of these images is found in the apendix.
 \newpage
+
+
+%-----------------------------Evaluation------------------------
+\section*{Evaluation}
+\paragraph{}
+Evaluation was performed using 10-fold cross-validation for the kNN classifier.
+Evaluation is performed in evaluation.py using standard Python language, with the support of
+the math, random, numpy, and subprocess libraries.  This script performes the m-fold
+cross-validation algorithm by dividing the dataset into m disjoint sets and iterates over them
+using the 'leave-one-out' methodology, where one set is preserved as the testing (or validaiton)
+set and the remaining m-1 sets are combined to become the new training set.  Normalization is
+performed anew on each of the m iterations for the training and testing sets separately.
 
 
 %-----------------------------Discussion------------------------
