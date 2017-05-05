@@ -40,7 +40,6 @@ Overall the project served its purpose and was an opportunity to review and beco
 with the classification methods learned during this course.  We are proud to announce we
 did not use any supporting libraries that do heavy-lifting of core computations, i.e. all
 classification methods were re-written by team members for this project.
-\newpage
 
 \paragraph{} 
 Overall the project served its purpose and was an opportunity to learn
@@ -112,8 +111,30 @@ SOMETHING
 %---------------------Experiments and Results-------------------------
 \newpage
 \section*{Experiments and Results}
-%\subsection*{flowers.ppm} 
-\newline
+\paragraph{MPP}
+
+\centerline{\includegraphics[width = 4.5in]{images/mpp-results}}
+
+\paragraph{kNN}
+
+\centerline{\includegraphics[width = 4.5in]{images/knn-results}}
+
+\paragraph{BPNN}
+
+\centerline{\includegraphics[width = 4.5in]{images/bpnn-results}}
+
+\paragraph{Decision Tree}
+The Decision tree algorithm was actually able to classify with an accuracy of one hundred percent when run on the testing set. The algorithm simply ran through each of the hands and had a node that decided for each of the groups since each group is defined in such a way that is known before hand and has to be a certain combination of the cards. This lead the algorithm to be very fast as well since it only goes through the data set one time to classify each hand.
+
+
+
+\paragraph{K-means}
+
+\centerline{\includegraphics[width = 4.5in]{../flowers}}
+
+\paragraph{Winner-Take-All}
+\paragraph{Kohonen Maps}
+
 \centerline{\includegraphics[width = 4.5in]{../flowers}}
 The original image \textit{flowers.ppm} is displayed above. All experiments
 are performed on this image. The first expiriment is the kmeans clustering
